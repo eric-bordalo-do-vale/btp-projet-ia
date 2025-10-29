@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block title %}{{ mentor.prenom }} {{ mentor.nom }} - La Tour{% endblock %}
+
+{% block content %}
+<div class="mentor-profile">
+    <div class="profile-header">
+        <div class="mentor-avatar-large">
+            {{ mentor.prenom[0] }}{{ mentor.nom[0] }}
+        </div>
+        <div class="profile-info">
+            <h1>{{ mentor.prenom }} {{ mentor.nom }}</h1>
+            <p class="role-badge">{{ mentor.role }}</p>
+            <p class="spec-tag">{{ mentor.specialisation or 'Non spécifié' }}</p>
+            <span class="status {% if mentor.disponible %}disponible{% else %}indisponible{% endif %}">
+                {% if mentor.disponible %}✓ Disponible{% else %}✗ Indisponible{% endif %}
+            </span>
+        </div>
+    </div>
+
+    <div class="profile-content">
+        <section class="bio-section">
+            <h2>À propos</h2>
+            <p>{{ mentor.bio or 'Pas de description disponible.' }}</p>
+        </section>
+
+        {% if mentor.disponible %}
+        <section class="action-section">
+            <a href="{{ url_for('demander_rdv', mentor_id=mentor.id) }}" class="btn btn-primary">
+                📅 Demander un rendez-vous
+            </a>
+        </section>
+        {% endif %}
+    </div>
+
+    <a href="{{ url_for('mentors') }}" class="btn-back">← Retour aux mentors</a>
+</div>
+{% endblock %}
