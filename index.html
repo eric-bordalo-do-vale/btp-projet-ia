@@ -1,0 +1,690 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>La Tour - Plateforme de Mentorat</title>
+    <link rel="stylesheet" href="static/css/style.css">
+    <style>
+        .page { display: none; }
+        .page.active { display: block; }
+        .mentor-card { cursor: pointer; transition: transform 0.3s; }
+        .mentor-card:hover { transform: translateY(-5px); }
+        #backBtn:disabled, #forwardBtn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        .navbar {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        body {
+            padding-top: 0;
+        }
+        .value-card {
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        a[href*="valeur-"] .value-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-brand">
+                <a href="#home" class="logo-link" style="cursor: pointer; display: flex; align-items: center; gap: 15px;">
+                    <img src="img24.jpg" alt="La Tour" style="height: 80px; width: auto;">
+                    <h1 style="font-size: 28px;">La Tour</h1>
+                </a>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="#home">Accueil</a></li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle">Mentorat ▼</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#mentors">👥 Trouver un mentor</a></li>
+                        <li><a href="#devenir-mentor">🎓 Devenir mentor</a></li>
+                    </ul>
+                </li>
+                <li><a href="#mes-rdv">Mes rendez-vous</a></li>
+                <li><a href="#chatbot">Chatbot IA</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="container">
+        <!-- PAGE ACCUEIL -->
+        <div id="home" class="page active">
+            <div class="hero">
+                <div style="display: flex; align-items: center; justify-content: center; gap: 20px; margin-bottom: 20px;">
+                    <img src="img24.jpg" alt="La Tour" style="height: 120px; width: auto;">
+                    <h1>Bienvenue sur La Tour</h1>
+                </div>
+                <p class="subtitle">L'entraide qu'élève</p>
+                <p class="hero-description">Votre plateforme d'entraide et de mentorat à La Plateforme</p>
+            </div>
+
+            <section class="about">
+                <h2>✨ À propos de La Tour</h2>
+                <div class="about-content">
+                    <div class="about-text">
+                        <p class="highlight-text">
+                            <span class="animated-word">La Tour</span> est une plateforme <strong>innovante</strong> qui met en relation 
+                            les étudiants, les intervenants et les partenaires de l'école numérique <strong>La Plateforme</strong> 
+                            pour favoriser l'apprentissage du code et des différentes technologies.
+                        </p>
+                        <div class="about-divider"></div>
+                        <p class="mission-text">
+                            <span class="icon-wrapper">🎯</span>
+                            L'objectif est simple : créer un <strong>espace d'entraide</strong> et d'accompagnement pour faciliter 
+                            la progression de chacun.
+                        </p>
+                    </div>
+                    <div class="about-stats">
+                        <div class="stat-card">
+                            <div class="stat-number" data-target="100">0</div>
+                            <div class="stat-label">Étudiants</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number" data-target="20">0</div>
+                            <div class="stat-label">Mentors</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number" data-target="6">0</div>
+                            <div class="stat-label">Spécialisations</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="team">
+                <h2>Notre Équipe</h2>
+                <p>4 étudiants passionnés en cybersécurité à La Plateforme</p>
+                <div class="team-members">
+                    <div class="team-member">
+                        <div class="member-avatar">A</div>
+                        <h3>Abdoulaye</h3>
+                        <p class="member-role">🔒 Expert Cybersécurité</p>
+                    </div>
+                    <div class="team-member">
+                        <div class="member-avatar">E</div>
+                        <h3>Eric</h3>
+                        <p class="member-role">💻 Développeur Full-Stack</p>
+                    </div>
+                    <div class="team-member">
+                        <div class="member-avatar">V</div>
+                        <h3>Vincent</h3>
+                        <p class="member-role">🎨 UI/UX Designer</p>
+                    </div>
+                    <div class="team-member">
+                        <div class="member-avatar">M</div>
+                        <h3>Moussa</h3>
+                        <p class="member-role">🚀 Chef de Projet</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="values">
+                <h2>🌟 Nos Valeurs Fondamentales</h2>
+                <div class="values-grid">
+                    <a href="#valeur-entraide" style="text-decoration: none; color: inherit;">
+                        <div class="value-card">
+                            <div class="value-icon">🤝</div>
+                            <h3>Entraide</h3>
+                            <p>L'humain au cœur de l'apprentissage</p>
+                        </div>
+                    </a>
+                    <a href="#valeur-excellence" style="text-decoration: none; color: inherit;">
+                        <div class="value-card">
+                            <div class="value-icon">⭐</div>
+                            <h3>Excellence</h3>
+                            <p>Viser toujours plus haut</p>
+                        </div>
+                    </a>
+                    <a href="#valeur-innovation" style="text-decoration: none; color: inherit;">
+                        <div class="value-card">
+                            <div class="value-icon">💡</div>
+                            <h3>Innovation</h3>
+                            <p>Allier IA et accompagnement humain</p>
+                        </div>
+                    </a>
+                    <a href="#valeur-accessibilite" style="text-decoration: none; color: inherit;">
+                        <div class="value-card">
+                            <div class="value-icon">🌐</div>
+                            <h3>Accessibilité</h3>
+                            <p>Rendre l'aide disponible 24/7</p>
+                        </div>
+                    </a>
+                </div>
+            </section>
+
+            <section class="specialisations">
+                <h2>Nos spécialisations</h2>
+                <div class="spec-grid">
+                    <div class="spec-badge">💻 Développement Web</div>
+                    <div class="spec-badge">📊 Data Science</div>
+                    <div class="spec-badge">🔒 Cybersécurité</div>
+                    <div class="spec-badge">📱 Mobile</div>
+                    <div class="spec-badge">☁️ Cloud & DevOps</div>
+                    <div class="spec-badge">🎨 UI/UX Design</div>
+                </div>
+            </section>
+        </div>
+
+        <!-- PAGE MENTORS -->
+        <div id="mentors" class="page">
+            <h2>👥 Trouver un Mentor</h2>
+            <div style="margin: 20px 0;">
+                <label>Filtrer par spécialisation:</label>
+                <select id="filterSpec" onchange="filterMentors()" style="padding: 8px; margin-left: 10px;">
+                    <option value="">Toutes les spécialisations</option>
+                    <option value="web">💻 Développement Web</option>
+                    <option value="data">📊 Data Science</option>
+                    <option value="cyber">🔒 Cybersécurité</option>
+                </select>
+            </div>
+            <div id="mentorsList" class="mentors-grid"></div>
+        </div>
+
+        <!-- PAGE DÉTAIL MENTOR -->
+        <div id="mentor-detail" class="page">
+            <div id="mentorDetailContent"></div>
+        </div>
+
+        <!-- PAGE DEMANDER RDV -->
+        <div id="demander-rdv" class="page">
+            <div id="rdvFormContent"></div>
+        </div>
+
+        <!-- PAGE VALEUR ENTRAIDE -->
+        <div id="valeur-entraide" class="page">
+            <h2>🤝 Entraide - L'humain au cœur de l'apprentissage</h2>
+            
+            <div style="background: white; padding: 30px; border-radius: 8px; margin: 20px 0;">
+                <p style="font-size: 18px; line-height: 1.8; margin-bottom: 20px;">
+                    L'entraide est le fondement de <strong>La Tour</strong>. Chez La Plateforme, nous croyons que l'apprentissage du code et des technologies est plus efficace quand on le fait ensemble. 
+                    Que vous soyez étudiant cherchant de l'aide ou mentor partageant vos connaissances, chaque interaction crée un lien humain qui transforme l'expérience pédagogique. 
+                    <strong>L'entraide n'est pas qu'une transmission de savoir : c'est une relation d'échange où chacun grandit.</strong>
+                </p>
+                
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin: 30px 0; align-items: center;">
+                    <div>
+                        <img src="static/images/entraide.jpg" alt="Entraide et collaboration" style="width: 100%; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.15);">
+                    </div>
+                    <div>
+                        <h3 style="color: #6eb7fb; margin-bottom: 15px;">Les bénéfices de l'entraide</h3>
+                        <ul style="list-style: none; padding: 0;">
+                            <li style="padding: 10px 0; border-bottom: 1px solid #eee;">✨ <strong>Apprentissage accéléré:</strong> Expliquer à quelqu'un d'autre renforce votre propre compréhension</li>
+                            <li style="padding: 10px 0; border-bottom: 1px solid #eee;">🌱 <strong>Confiance en soi:</strong> Recevoir du soutien et aider d'autres crée une dynamique positive</li>
+                            <li style="padding: 10px 0; border-bottom: 1px solid #eee;">🌐 <strong>Réseau professionnel:</strong> Les relations nouées durant l'apprentissage durent au-delà de l'école</li>
+                            <li style="padding: 10px 0;">❤️ <strong>Bienveillance:</strong> Un environnement basé sur l'entraide crée une communauté inclusive</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <p style="font-size: 18px; line-height: 1.8; margin-top: 20px;">
+                    Chez <strong>La Tour</strong>, nous mettons en relation des étudiants passionnés avec des mentors expérimentés pour créer des moments d'apprentissage authentiques. 
+                    Que ce soit pour déboguer du code, comprendre un concept difficile, ou simplement avoir un retour sur votre progression, 
+                    <strong>l'entraide est là pour vous accompagner vers l'excellence.</strong> Parce que nous réussissons mieux ensemble.
+                </p>
+            </div>
+        </div>
+
+        <!-- PAGE VALEUR EXCELLENCE -->
+        <div id="valeur-excellence" class="page">
+            <h2>⭐ Excellence - Viser toujours plus haut</h2>
+            
+            <div style="background: white; padding: 30px; border-radius: 8px; margin: 20px 0;">
+                <p style="font-size: 18px; line-height: 1.8; margin-bottom: 20px;">
+                    L'excellence n'est pas réservée aux plus doués. C'est un <strong>chemin de progression constante</strong> que chacun peut emprunter, quel que soit son point de départ. 
+                    À La Plateforme, des milliers d'étudiants commencent sans aucune expérience en informatique - qu'ils souhaitent apprendre le développement web, l'administration réseau, l'intelligence artificielle ou toute autre spécialité - 
+                    et progressent étape par étape jusqu'à atteindre des niveaux d'expertise remarquables. <strong>Votre niveau actuel n'est jamais une limite, c'est votre point de départ.</strong>
+                </p>
+                
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin: 30px 0; align-items: center;">
+                    <div>
+                        <h3 style="color: #6eb7fb; margin-bottom: 15px;">Un parcours accessible à tous</h3>
+                        <ul style="list-style: none; padding: 0;">
+                            <li style="padding: 10px 0; border-bottom: 1px solid #eee;">🚀 <strong>Du débutant au master:</strong> Peu importe votre niveau initial, un chemin clair vous attend</li>
+                            <li style="padding: 10px 0; border-bottom: 1px solid #eee;">📚 <strong>Multiples spécialités:</strong> Web, Cloud, Cybersécurité, Data Science, IA, Admin réseau et plus</li>
+                            <li style="padding: 10px 0; border-bottom: 1px solid #eee;">💪 <strong>Mentorat spécialisé:</strong> Des experts dans chaque domaine pour vous guider</li>
+                            <li style="padding: 10px 0;">🎯 <strong>Excellence accessible:</strong> L'expert d'hier était un débutant avant de progresser</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <img src="static/images/exellence.jpg" alt="Progression de l'apprentissage" style="width: 100%; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.15);">
+                    </div>
+                </div>
+
+                <p style="font-size: 18px; line-height: 1.8; margin-top: 20px;">
+                    <strong>La Tour</strong> existe pour accompagner cette progression. Grâce au mentorat et à l'entraide, vous pouvez surmonter chaque obstacle, clarifier les concepts difficiles et vous propulser vers l'excellence. 
+                    Chez nous, <strong>l'excellence n'est pas un talent inné, c'est le fruit de la persévérance, du bon accompagnement et de la passion pour apprendre.</strong>
+                </p>
+            </div>
+        </div>
+
+        <!-- PAGE VALEUR INNOVATION -->
+        <div id="valeur-innovation" class="page">
+            <h2>💡 Innovation - Allier IA et accompagnement humain</h2>
+            
+            <div style="background: white; padding: 30px; border-radius: 8px; margin: 20px 0;">
+                <p style="font-size: 18px; line-height: 1.8; margin-bottom: 20px;">
+                    L'intelligence artificielle n'est pas l'ennemi de l'apprentissage humain, c'est son <strong>complément idéal</strong>. 
+                    À <strong>La Tour</strong>, nous croyons que les technologies innovantes et le mentorat humain se renforcent mutuellement. 
+                    L'IA peut vous proposer des explications instantanées, des solutions rapides et des ressources adaptées à votre rythme, 
+                    tandis que les mentors humains vous apportent l'empathie, les nuances et la compréhension profonde qui transforment des connaissances en expertise.
+                </p>
+                
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin: 30px 0; align-items: center;">
+                    <div>
+                        <h3 style="color: #6eb7fb; margin-bottom: 15px;">IA + Mentorat = Apprentissage optimal</h3>
+                        <ul style="list-style: none; padding: 0;">
+                            <li style="padding: 10px 0; border-bottom: 1px solid #eee;">⚡ <strong>Disponibilité 24/7:</strong> L'IA répond instantanément à vos questions, même hors des heures de bureau</li>
+                            <li style="padding: 10px 0; border-bottom: 1px solid #eee;">🎯 <strong>Personnalisation:</strong> Chaque apprenant reçoit une expérience adaptée à son niveau et son rythme</li>
+                            <li style="padding: 10px 0; border-bottom: 1px solid #eee;">💬 <strong>Accompagnement humain:</strong> Les mentors interviennent pour les concepts complexes et la guidance personnelle</li>
+                            <li style="padding: 10px 0;">🚀 <strong>Apprentissage accéléré:</strong> La combinaison crée une synergie où chacun complète l'autre</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <img src="static/images/innovation.jpg" alt="IA et accompagnement humain" style="width: 100%; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.15);">
+                    </div>
+                </div>
+
+                <p style="font-size: 18px; line-height: 1.8; margin-top: 20px;">
+                    Notre <strong>chatbot IA</strong> de La Tour est conçu pour être votre premier réflexe : une question technique, un concept à clarifier, du code à déboguer. 
+                    Mais nous n'oublions pas que <strong>l'IA a des limites</strong> - elle ne peut pas remplacer la relation humaine, la motivation personnalisée, la confiance qu'on gagne en parlant à quelqu'un qui a déjà surmonté les mêmes défis. 
+                    C'est pourquoi <strong>l'innovation véritable chez La Tour, c'est de combiner l'efficacité de l'IA avec la chaleur du mentorat humain.</strong>
+                </p>
+            </div>
+        </div>
+
+        <!-- PAGE VALEUR ACCESSIBILITÉ -->
+        <div id="valeur-accessibilite" class="page">
+            <h2>🌐 Accessibilité - Rendre l'aide disponible 24/7</h2>
+            
+            <div style="background: white; padding: 30px; border-radius: 8px; margin: 20px 0;">
+                <p style="font-size: 18px; line-height: 1.8; margin-bottom: 20px;">
+                    <strong>Aucun étudiant n'est seul</strong>. L'apprentissage du code ne s'arrête pas à 17h, et les questions ne disparaissent pas le week-end. 
+                    À <strong>La Tour</strong>, nous croyons que l'aide doit être accessible <strong>quand vous en avez besoin, pas seulement quand l'école est ouverte</strong>. 
+                    C'est pourquoi nous offrons une accessibilité sans précédent : un chatbot IA disponible 24/24, 7/7 pour répondre à vos questions instantanément, 
+                    et des mentors qui peuvent être contactés selon leur disponibilité - souvent en dehors des heures d'ouverture de l'école.
+                </p>
+                
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin: 30px 0; align-items: center;">
+                    <div>
+                        <h3 style="color: #6eb7fb; margin-bottom: 15px;">Une aide toujours à portée de main</h3>
+                        <ul style="list-style: none; padding: 0;">
+                            <li style="padding: 10px 0; border-bottom: 1px solid #eee;">🤖 <strong>Chatbot 24/7:</strong> Posez vos questions techniques n'importe quand, même à 3h du matin</li>
+                            <li style="padding: 10px 0; border-bottom: 1px solid #eee;">👥 <strong>Mentors flexibles:</strong> Contactez des mentors selon leurs disponibilités affichées sur le site</li>
+                            <li style="padding: 10px 0; border-bottom: 1px solid #eee;">🌙 <strong>Hors des heures de l'école:</strong> L'entraide continue le soir, les week-ends et les jours fériés</li>
+                            <li style="padding: 10px 0;">💪 <strong>Jamais seul:</strong> Quelqu'un est toujours là pour vous aider, à votre rythme</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <img src="static/images/accessibilite.jpg" alt="Accessibilité et support 24/7" style="width: 100%; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.15);">
+                    </div>
+                </div>
+
+                <p style="font-size: 18px; line-height: 1.8; margin-top: 20px;">
+                    Que vous soyez en train d'étudier tard le soir avant un examen, en plein blocage créatif sur un projet personnel, ou simplement curieux d'approfondir un concept lors d'un dimanche tranquille, 
+                    <strong>La Tour est là pour vous</strong>. Notre mission est simple : <strong>rendre le mentorat accessible à tous, partout, tout le temps</strong>. 
+                    Parce que la passion d'apprendre n'a pas d'horaires, et vos questions ne devraient pas attendre.
+                </p>
+            </div>
+        </div>
+
+        <div id="mes-rdv" class="page">
+            <h2>📅 Mes Rendez-vous</h2>
+            <div id="rdvList" style="display: grid; gap: 20px;"></div>
+            <p id="noRdv" style="text-align: center; color: #666; margin-top: 40px;">Aucun rendez-vous prévu. <button onclick="showPage('mentors')" class="btn">Trouver un mentor</button></p>
+        </div>
+
+        <!-- PAGE CHATBOT -->
+        <div id="chatbot" class="page">
+            <h2>🤖 Chatbot IA - La Tour Assistant</h2>
+            <div style="background: #f8f9fa; border-radius: 8px; padding: 20px; margin: 20px 0; max-width: 600px;">
+                <div id="chatMessages" style="height: 300px; overflow-y: auto; background: white; padding: 15px; border-radius: 8px; margin-bottom: 15px;">
+                    <div style="padding: 10px; background: #e3f2fd; border-radius: 8px; margin-bottom: 10px;">
+                        <strong>Assistant:</strong> Bonjour! 👋 Je suis votre assistant La Tour. Comment puis-je vous aider?
+                    </div>
+                </div>
+                <div style="display: flex; gap: 10px;">
+                    <input type="text" id="chatInput" placeholder="Posez votre question..." style="flex: 1; padding: 10px; border: 1px solid #ddd; border-radius: 8px;">
+                    <button onclick="sendMessage()" class="btn">Envoyer</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- PAGE DEVENIR MENTOR -->
+        <div id="devenir-mentor" class="page">
+            <h2>🎓 Devenir Mentor</h2>
+            <div style="background: white; padding: 30px; border-radius: 8px; max-width: 600px;">
+                <p style="margin-bottom: 20px;">Vous souhaitez partager vos connaissances et aider d'autres étudiants?</p>
+                <form onsubmit="submitMentorForm(event)">
+                    <div style="margin-bottom: 15px;">
+                        <label>Nom complet:</label>
+                        <input type="text" required style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 8px;">
+                    </div>
+                    <div style="margin-bottom: 15px;">
+                        <label>Email:</label>
+                        <input type="email" required style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 8px;">
+                    </div>
+                    <div style="margin-bottom: 15px;">
+                        <label>Spécialisation:</label>
+                        <select required style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 8px;">
+                            <option>Développement Web</option>
+                            <option>Data Science</option>
+                            <option>Cybersécurité</option>
+                            <option>Mobile</option>
+                            <option>Cloud & DevOps</option>
+                            <option>UI/UX Design</option>
+                        </select>
+                    </div>
+                    <div style="margin-bottom: 15px;">
+                        <label>Bio / Présentation:</label>
+                        <textarea required style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 8px; height: 100px;"></textarea>
+                    </div>
+                    <button type="submit" class="btn">Devenir Mentor</button>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 La Tour - La Plateforme Marseille</p>
+        </div>
+    </footer>
+
+    <script>
+        // Données des mentors
+        const mentors = [
+            { id: 1, nom: "Jean Dupont", specialisation: "web", bio: "Expert en développement web avec 5+ ans d'expérience", email: "jean@laplateforme.io", disponible: true },
+            { id: 2, nom: "Sophie Martin", specialisation: "data", bio: "Spécialiste Data Science et Machine Learning", email: "sophie@laplateforme.io", disponible: true },
+            { id: 3, nom: "Pierre Durand", specialisation: "cyber", bio: "Expert en cybersécurité et sécurité informatique", email: "pierre@laplateforme.io", disponible: true },
+            { id: 4, nom: "Marie Leroy", specialisation: "web", bio: "Mentore bénévole en React et Frontend", email: "marie@laplateforme.io", disponible: true },
+        ];
+
+        let rendezVous = [];
+
+        function showPage(pageName) {
+            document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+            document.getElementById(pageName).classList.add('active');
+            
+            if (pageName === 'mentors') {
+                displayMentors(mentors);
+            } else if (pageName === 'mes-rdv') {
+                displayRdv();
+            } else if (pageName.startsWith('mentor-')) {
+                const mentorId = parseInt(pageName.split('-')[1]);
+                showMentorDetail(mentorId);
+            } else if (pageName.startsWith('rdv-')) {
+                const mentorId = parseInt(pageName.split('-')[1]);
+                openRdvForm(mentorId);
+            }
+            
+            window.scrollTo(0, 0);
+        }
+
+        function goBack() {
+            if (historyIndex > 0) {
+                historyIndex--;
+                const pageName = pageHistory[historyIndex];
+                document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+                document.getElementById(pageName).classList.add('active');
+                
+                if (pageName === 'mentors') {
+                    displayMentors(mentors);
+                } else if (pageName === 'mes-rdv') {
+                    displayRdv();
+                }
+                
+                updateNavigationButtons();
+                window.scrollTo(0, 0);
+            }
+        }
+
+        function goForward() {
+            if (historyIndex < pageHistory.length - 1) {
+                historyIndex++;
+                const pageName = pageHistory[historyIndex];
+                document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+                document.getElementById(pageName).classList.add('active');
+                
+                if (pageName === 'mentors') {
+                    displayMentors(mentors);
+                } else if (pageName === 'mes-rdv') {
+                    displayRdv();
+                }
+                
+                updateNavigationButtons();
+                window.scrollTo(0, 0);
+            }
+        }
+
+        function updateNavigationButtons() {
+            const backBtn = document.getElementById('backBtn');
+            const forwardBtn = document.getElementById('forwardBtn');
+            
+            if (backBtn) backBtn.disabled = historyIndex === 0;
+            if (forwardBtn) forwardBtn.disabled = historyIndex === pageHistory.length - 1;
+        }
+
+        function displayMentors(data) {
+            const list = document.getElementById('mentorsList');
+            list.innerHTML = data.map(m => `
+                <div class="mentor-card" style="border: 1px solid #ddd; padding: 20px; border-radius: 8px; background: white;">
+                    <h3>${m.nom}</h3>
+                    <p><strong>Spécialisation:</strong> ${m.specialisation.toUpperCase()}</p>
+                    <p>${m.bio}</p>
+                    <a href="#mentor-${m.id}" class="btn" style="text-decoration: none; display: inline-block;">Voir le profil</a>
+                </div>
+            `).join('');
+        }
+
+        function filterMentors() {
+            const spec = document.getElementById('filterSpec').value;
+            const filtered = spec ? mentors.filter(m => m.specialisation === spec) : mentors;
+            displayMentors(filtered);
+        }
+
+        function showMentorDetail(id) {
+            const mentor = mentors.find(m => m.id === id);
+            const content = document.getElementById('mentorDetailContent');
+            content.innerHTML = `
+                <h2>${mentor.nom}</h2>
+                <p><strong>Spécialisation:</strong> ${mentor.specialisation.toUpperCase()}</p>
+                <p><strong>Email:</strong> ${mentor.email}</p>
+                <p><strong>Bio:</strong> ${mentor.bio}</p>
+                <a href="#rdv-${mentor.id}" class="btn" style="text-decoration: none; display: inline-block;">Demander un rendez-vous</a>
+            `;
+            document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+            document.getElementById('mentor-detail').classList.add('active');
+        }
+
+        function openRdvForm(mentorId) {
+            const mentor = mentors.find(m => m.id === mentorId);
+            const content = document.getElementById('rdvFormContent');
+            content.innerHTML = `
+                <h2>Demander un rendez-vous avec ${mentor.nom}</h2>
+                <form onsubmit="submitRdv(event, ${mentorId})" style="max-width: 500px;">
+                    <div style="margin-bottom: 15px;">
+                        <label>Sujet:</label>
+                        <input type="text" required style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 8px;">
+                    </div>
+                    <div style="margin-bottom: 15px;">
+                        <label>Description:</label>
+                        <textarea required style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 8px; height: 100px;"></textarea>
+                    </div>
+                    <div style="margin-bottom: 15px;">
+                        <label>Date et heure:</label>
+                        <input type="datetime-local" required style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 8px;">
+                    </div>
+                    <div style="margin-bottom: 15px;">
+                        <label>Type:</label>
+                        <select style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 8px;">
+                            <option>En ligne</option>
+                            <option>En présentiel</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn">Confirmer le rendez-vous</button>
+                </form>
+            `;
+            document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+            document.getElementById('demander-rdv').classList.add('active');
+        }
+
+        function submitRdv(event, mentorId) {
+            event.preventDefault();
+            const form = event.target;
+            const rdv = {
+                id: rendezVous.length + 1,
+                mentorId,
+                mentor: mentors.find(m => m.id === mentorId).nom,
+                sujet: form.elements[0].value,
+                description: form.elements[1].value,
+                date: form.elements[2].value,
+                type: form.elements[3].value,
+                statut: 'en attente'
+            };
+            rendezVous.push(rdv);
+            alert('Rendez-vous demandé avec succès!');
+            showPage('mes-rdv');
+        }
+
+        function displayRdv() {
+            const list = document.getElementById('rdvList');
+            const noRdv = document.getElementById('noRdv');
+            
+            if (rendezVous.length === 0) {
+                list.innerHTML = '';
+                noRdv.style.display = 'block';
+            } else {
+                noRdv.style.display = 'none';
+                list.innerHTML = rendezVous.map(rdv => `
+                    <div style="border: 1px solid #ddd; padding: 20px; border-radius: 8px; background: white;">
+                        <h3>Rendez-vous avec ${rdv.mentor}</h3>
+                        <p><strong>Sujet:</strong> ${rdv.sujet}</p>
+                        <p><strong>Date:</strong> ${new Date(rdv.date).toLocaleString('fr-FR')}</p>
+                        <p><strong>Type:</strong> ${rdv.type}</p>
+                        <p><strong>Statut:</strong> <span style="color: #ff9800;">${rdv.statut}</span></p>
+                        <p>${rdv.description}</p>
+                    </div>
+                `).join('');
+            }
+        }
+
+        function sendMessage() {
+            const input = document.getElementById('chatInput');
+            const messages = document.getElementById('chatMessages');
+            
+            if (input.value.trim()) {
+                messages.innerHTML += `<div style="padding: 10px; background: #fff3e0; border-radius: 8px; margin-bottom: 10px;"><strong>Vous:</strong> ${input.value}</div>`;
+                
+                setTimeout(() => {
+                    messages.innerHTML += `<div style="padding: 10px; background: #e3f2fd; border-radius: 8px; margin-bottom: 10px;"><strong>Assistant:</strong> Merci pour votre question! Je suis en cours de développement pour mieux vous répondre.</div>`;
+                    messages.scrollTop = messages.scrollHeight;
+                }, 500);
+                
+                input.value = '';
+                messages.scrollTop = messages.scrollHeight;
+            }
+        }
+
+        function submitMentorForm(event) {
+            event.preventDefault();
+            alert('Votre candidature a été envoyée! Nous vous contacterons bientôt.');
+            event.target.reset();
+            showPage('home');
+        }
+
+        // Animation des compteurs
+        document.addEventListener('DOMContentLoaded', function() {
+            updateNavigationButtons();
+            
+            // Gérer les changements de hash (navigation)
+            window.addEventListener('hashchange', function() {
+                const hash = window.location.hash.slice(1) || 'home';
+                
+                // Gérer les pages de mentor
+                if (hash.startsWith('mentor-')) {
+                    const mentorId = parseInt(hash.split('-')[1]);
+                    showMentorDetail(mentorId);
+                } else if (hash.startsWith('rdv-')) {
+                    const mentorId = parseInt(hash.split('-')[1]);
+                    openRdvForm(mentorId);
+                } else {
+                    showPage(hash);
+                }
+            });
+            
+            // Afficher la page initiale
+            const initialHash = window.location.hash.slice(1) || 'home';
+            if (initialHash.startsWith('mentor-')) {
+                const mentorId = parseInt(initialHash.split('-')[1]);
+                showMentorDetail(mentorId);
+            } else if (initialHash.startsWith('rdv-')) {
+                const mentorId = parseInt(initialHash.split('-')[1]);
+                openRdvForm(mentorId);
+            } else {
+                showPage(initialHash);
+            }
+            
+            const statNumbers = document.querySelectorAll('.stat-number');
+            
+            const animateCounter = (element) => {
+                const target = parseInt(element.getAttribute('data-target'));
+                const duration = 2000;
+                const step = target / (duration / 16);
+                let current = 0;
+                
+                const timer = setInterval(() => {
+                    current += step;
+                    if (current >= target) {
+                        element.textContent = target + '+';
+                        clearInterval(timer);
+                    } else {
+                        element.textContent = Math.floor(current);
+                    }
+                }, 16);
+            };
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        animateCounter(entry.target);
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.5 });
+            
+            statNumbers.forEach(stat => observer.observe(stat));
+
+            const dropdowns = document.querySelectorAll('.dropdown');
+            dropdowns.forEach(dropdown => {
+                const toggle = dropdown.querySelector('.dropdown-toggle');
+                if (toggle) {
+                    toggle.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        if (window.innerWidth <= 768) {
+                            dropdown.classList.toggle('active');
+                        }
+                    });
+                }
+            });
+        });
+
+        // Keyboard shortcut for chat
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter' && document.getElementById('chatInput') === document.activeElement) {
+                sendMessage();
+            }
+        });
+    </script>
+</body>
+</html>
