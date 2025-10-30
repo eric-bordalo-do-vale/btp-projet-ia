@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block title %}Trouver un mentor - La Tour{% endblock %}
+
+{% block content %}
+<h1>Trouver un mentor</h1>
+
+<div class="filters">
+    <form hx-get="{{ url_for('mentors') }}" hx-target="#mentors-list" hx-trigger="change from:#specialisation">
+        <select name="specialisation" id="specialisation">
+            <option value="">Toutes les spécialisations</option>
+            <option value="web">Développement Web</option>
+            <option value="data">Data Science</option>
+            <option value="cyber">Cybersécurité</option>
+            <option value="mobile">Mobile</option>
+            <option value="cloud">Cloud & DevOps</option>
+            <option value="design">UI/UX Design</option>
+        </select>
+    </form>
+</div>
+
+<div id="mentors-list" class="mentors-grid">
+    {% if mentors %}
+        {% for mentor in mentors %}
+        <div class="mentor-card">
+            <div class="mentor-avatar">
+                {{ mentor.prenom[0] }}{{ mentor.nom[0] }}
+            </div>
+            <h3>{{ mentor.prenom }} {{ mentor.nom }}</h3>
+            <p class="role-badge">{{ mentor.role }}</p>
+            <p class="spec-tag">{{ mentor.specialisation or 'Non spécifié' }}</p>
+            <p class="bio">{{ mentor.bio or 'Pas de description' }}</p>
+            <a href="{{ url_for('mentor_detail', id=mentor.id) }}" class="btn btn-small">Voir le profil</a>
+        </div>
+        {% endfor %}
+    {% else %}
+        <p class="no-results">Aucun mentor disponible pour le moment.</p>
+    {% endif %}
+</div>
+{% endblock %}

@@ -1,78 +1,180 @@
-# BTP Projet IA - Prototype de Plateforme d'Assistance par IA
+# 🗼 La Tour - Plateforme de Mentorat
 
-## 📋 À Propos du Projet
+Plateforme d'entraide et de mentorat pour les étudiants de La Plateforme (Marseille).
 
-**BTP Projet IA** est un **prototype et modèle conceptuel** d'une plateforme collaborative conçue pour démontrer comment les étudiants, les enseignants et les partenaires pourraient interagir avec des agents IA pour résoudre des défis techniques et conceptuels en environnement scolaire.
+## 🚀 Installation
 
-### Vision du Prototype
+### 1. Créer un environnement virtuel Python
 
-Ce projet illustre comment créer un écosystème où chacun peut transposer ses problèmes (bugs, concepts difficiles, architecture système) à des agents IA spécialisés qui fournissent des explications claires et adaptées.
+```bash
+python -m venv venv
+```
 
-### Fonctionnalités Conceptuelles
+### 2. Activer l'environnement virtuel
 
-- **Assistants Spécialisés** : Agents IA multi-domaines couvrant plusieurs niveaux de maîtrise
-- **Résolution de Problèmes** : Modèle pour aider avec les bugs, concepts et architecture
-- **Collaboration** : Concept d'interface pour les différents acteurs
-- **Apprentissage Progressif** : Adaptation aux niveaux de compétence
-- **Design Scolaire** : Pensé pour l'intégration éducative
+**Windows :**
+```bash
+venv\Scripts\activate
+```
 
-## 👥 Équipe
+**Linux/Mac :**
+```bash
+source venv/bin/activate
+```
 
-Nous sommes **4 étudiants en Cybersécurité** de **Marseille, France**, actuellement en formation pour :
-- Maîtriser l'ingénierie des prompts (Prompt Engineering)
-- Développer une expertise en Intelligence Artificielle
-- Appliquer ces compétences à des cas d'usage innovants
-- Créer des prototypes démontrant la faisabilité des solutions
+### 3. Installer les dépendances
 
-## 🏗️ Architecture Conceptuelle
+```bash
+pip install -r requirements.txt
+```
 
-### Stack Technologique (Proposée)
-- **Backend** : API RESTful pour la gestion des agents
-- **Frontend** : Interface utilisateur intuitive
-- **IA** : LLMs avec ingénierie de prompts avancée
-- **Base de Données** : Stockage des configurations et historiques
+### 4. Configurer les variables d'environnement
 
-### Principes Clés
-- Orchestration multi-agents IA
-- Système de prompts contextuels et adaptatifs
-- Gestion des rôles (étudiants, enseignants, partenaires)
-- Extensibilité et intégrations externes
+Copier `.env.example` vers `.env` et modifier si nécessaire :
+```bash
+copy .env.example .env
+```
 
-## 💡 Cas d'Usage Envisagés
+### 5. Initialiser la base de données
 
-### Pour les Étudiants
-- Déboguer rapidement avec assistance IA
-- Comprendre des concepts complexes
-- Accéder à des ressources personnalisées
+```bash
+flask init-db
+```
 
-### Pour les Enseignants
-- Identifier les problèmes récurrents
-- Obtenir des insights pédagogiques
-- Enrichir le cursus avec des cas réels
+### 6. Ajouter des données de test
 
-### Pour les Partenaires
-- Contribuer à la formation des juniors
-- Identifier les talents potentiels
-- Co-créer des défis pertinents
+```bash
+flask seed-db
+```
 
-## 📁 Structure du Prototype
+### 7. Lancer l'application
+
+```bash
+python app.py
+```
+
+L'application sera accessible sur : http://127.0.0.1:5000
+
+## 📁 Structure du projet
 
 ```
 btp-projet-ia/
-├── README.md              # Documentation principale
-├── agent.md              # Définitions des agents
-├── docs/                 # Documentation conceptuelle
-└── LICENSE               # Conditions d'utilisation
+├── app.py                 # Application Flask principale
+├── requirements.txt       # Dépendances Python
+├── .env                   # Variables d'environnement (à créer)
+├── .env.example          # Exemple de configuration
+├── templates/            # Templates HTML
+│   ├── base.html
+│   ├── index.html
+│   ├── mentors.html
+│   ├── mentor_detail.html
+│   ├── demander_rdv.html
+│   ├── mes_rdv.html
+│   └── chatbot.html
+└── static/
+    └── css/
+        └── style.css     # Styles CSS
 ```
 
-## 🎯 Objectifs Pédagogiques
+## 🎯 Fonctionnalités implémentées
 
-Ce projet serve d'exercice pratique pour :
-- Comprendre l'ingénierie des prompts
-- Explorer les architectures multi-agents
-- Apprendre à concevoir des solutions IA
-- Documenter une vision technologique
+### ✅ Version 1 (Base)
+- [x] Page d'accueil
+- [x] Liste des mentors avec filtres par spécialisation
+- [x] Profil détaillé d'un mentor
+- [x] Formulaire de demande de rendez-vous
+- [x] Page "Mes rendez-vous"
+- [x] Interface chatbot (UI prête)
+- [x] Base de données SQLite avec modèles User et RendezVous
+- [x] Design responsive avec HTMX
+- [x] Données de test
 
----
+## 🔨 À développer (prochaines étapes)
 
-**Développé par 4 étudiants en Cybersécurité - Marseille, 2025**
+### 📌 Priorité 1 (Jours 1-3)
+- [ ] Système d'authentification (inscription/connexion)
+- [ ] Gestion des sessions utilisateurs
+- [ ] Édition de profil utilisateur
+- [ ] Validation et acceptation/refus des rendez-vous
+
+### 📌 Priorité 2 (Jours 4-6)
+- [ ] Intégration d'une vraie IA pour le chatbot (OpenAI, Hugging Face, etc.)
+- [ ] Système de notifications
+- [ ] Recherche avancée de mentors
+- [ ] Calendrier interactif pour les disponibilités
+
+### 📌 Priorité 3 (Jours 7-9)
+- [ ] Système de notation/avis
+- [ ] Messagerie interne
+- [ ] Statistiques et tableau de bord
+- [ ] Export de données
+
+### 📌 Finitions (Jour 10)
+- [ ] Tests finaux
+- [ ] Documentation utilisateur
+- [ ] Optimisations de performance
+- [ ] Préparation de la présentation
+
+## 🛠️ Technologies utilisées
+
+- **Backend** : Python 3.x + Flask
+- **Base de données** : SQLite (SQLAlchemy ORM)
+- **Frontend** : HTML5/CSS3 + HTMX
+- **Design** : CSS personnalisé (responsive)
+
+## 💡 Exemples d'utilisation de HTMX
+
+HTMX est déjà intégré dans le projet. Voici des exemples :
+
+### Filtrage de mentors sans rechargement
+```html
+<form hx-get="/mentors" hx-target="#mentors-list" hx-trigger="change">
+    <select name="specialisation">...</select>
+</form>
+```
+
+### Envoi de message chatbot
+```html
+<form hx-post="/api/chat" hx-target="#chat-messages" hx-swap="beforeend">
+    <input type="text" name="message">
+</form>
+```
+
+## 👥 Équipe
+
+4 étudiants de La Plateforme - Marseille
+
+## 📝 Notes pour le développement
+
+### Bonnes pratiques
+- Faire des commits réguliers avec des messages clairs
+- Tester chaque fonctionnalité avant de passer à la suivante
+- Commenter le code complexe
+- Utiliser les branches Git pour les nouvelles fonctionnalités
+
+### Conseils HTMX
+- `hx-get` / `hx-post` : requêtes AJAX
+- `hx-target` : où afficher la réponse
+- `hx-swap` : comment remplacer le contenu
+- `hx-trigger` : quand déclencher la requête
+
+### Base de données
+- Utilisez `flask shell` pour tester des requêtes
+- Les migrations peuvent être ajoutées avec Flask-Migrate si nécessaire
+
+## 🐛 Débogage
+
+Si l'application ne démarre pas :
+1. Vérifier que l'environnement virtuel est activé
+2. Vérifier que toutes les dépendances sont installées
+3. Vérifier que la base de données est initialisée
+4. Consulter les logs d'erreur dans le terminal
+
+## 📞 Support
+
+En cas de problème, consultez :
+- Documentation Flask : https://flask.palletsprojects.com/
+- Documentation HTMX : https://htmx.org/docs/
+- Documentation SQLAlchemy : https://docs.sqlalchemy.org/
+
+Bon courage pour votre projet ! 🚀

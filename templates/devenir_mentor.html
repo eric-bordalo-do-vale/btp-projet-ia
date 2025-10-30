@@ -1,0 +1,136 @@
+{% extends "base.html" %}
+
+{% block title %}Devenir Mentor - La Tour{% endblock %}
+
+{% block content %}
+<div class="hero-mentor">
+    <h1>Rejoignez Notre Communauté de Mentors 🎓</h1>
+    <p class="subtitle">L'entraide qu'élève</p>
+    <p class="hero-description">Partagez vos connaissances, inspirez les autres</p>
+</div>
+
+<section class="mentor-intro">
+    <h2>Pourquoi Devenir Mentor ?</h2>
+    <p>
+        Vous maîtrisez une technologie ? Partagez vos connaissances et aidez d'autres étudiants à progresser 
+        dans leur apprentissage. Devenez mentor à votre tour et contribuez à l'écosystème d'entraide de La Plateforme.
+    </p>
+</section>
+
+<section class="mentor-benefits">
+    <h2>Les Avantages du Mentorat</h2>
+    <div class="benefits-grid">
+        <div class="benefit-card">
+            <div class="benefit-icon">🧠</div>
+            <h3>Renforcez vos compétences</h3>
+            <p>Expliquer, c'est apprendre deux fois. Le mentorat consolide votre maîtrise technique.</p>
+        </div>
+        
+        <div class="benefit-card">
+            <div class="benefit-icon">🤝</div>
+            <h3>Développez votre réseau</h3>
+            <p>Créez des liens durables avec d'autres étudiants et professionnels de l'école.</p>
+        </div>
+        
+        <div class="benefit-card">
+            <div class="benefit-icon">⭐</div>
+            <h3>Valorisez votre profil</h3>
+            <p>Le mentorat est un atout majeur sur votre CV et auprès des recruteurs.</p>
+        </div>
+        
+        <div class="benefit-card">
+            <div class="benefit-icon">💡</div>
+            <h3>Partagez votre passion</h3>
+            <p>Transmettez votre enthousiasme pour la tech et inspirez la prochaine génération.</p>
+        </div>
+    </div>
+</section>
+
+<section class="mentor-requirements">
+    <h2>Comment Devenir Mentor ?</h2>
+    <div class="requirements-list">
+        <div class="requirement-item">
+            <span class="step-number">1</span>
+            <div class="requirement-content">
+                <h3>Maîtrisez une compétence</h3>
+                <p>Vous devez avoir une bonne maîtrise d'au moins une technologie ou spécialisation enseignée à La Plateforme.</p>
+            </div>
+        </div>
+        
+        <div class="requirement-item">
+            <span class="step-number">2</span>
+            <div class="requirement-content">
+                <h3>Ayez l'esprit d'entraide</h3>
+                <p>La patience, l'écoute et la bienveillance sont essentielles pour accompagner efficacement.</p>
+            </div>
+        </div>
+        
+        <div class="requirement-item">
+            <span class="step-number">3</span>
+            <div class="requirement-content">
+                <h3>Soyez disponible</h3>
+                <p>Engagez-vous à consacrer quelques heures par semaine pour répondre aux demandes.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="mentor-specializations">
+    <h2>Spécialisations Recherchées</h2>
+    <div class="spec-tags-grid">
+        <span class="spec-tag-large">💻 Développement Web</span>
+        <span class="spec-tag-large">📊 Data Science & IA</span>
+        <span class="spec-tag-large">🔒 Cybersécurité</span>
+        <span class="spec-tag-large">📱 Développement Mobile</span>
+        <span class="spec-tag-large">☁️ Cloud & DevOps</span>
+        <span class="spec-tag-large">🎨 UI/UX Design</span>
+        <span class="spec-tag-large">🗄️ Base de données</span>
+        <span class="spec-tag-large">🚀 Architecture Logicielle</span>
+    </div>
+</section>
+
+<section class="mentor-cta">
+    <div class="cta-box">
+        <h2>Prêt à Faire la Différence ?</h2>
+        <p>Rejoignez notre communauté de mentors et contribuez à l'apprentissage collaboratif</p>
+        <div class="cta-buttons">
+            <a href="mailto:contact@laplateforme.io?subject=Candidature Mentor - La Tour" class="btn btn-primary-large">
+                📧 Postuler comme mentor
+            </a>
+            <a href="{{ url_for('mentors') }}" class="btn btn-secondary-large">
+                👥 Voir les mentors actuels
+            </a>
+        </div>
+        <p class="cta-note">💡 Vous recevrez une réponse sous 48h</p>
+    </div>
+</section>
+
+<section class="testimonials">
+    <h2>Ce Que Disent Nos Mentors</h2>
+    <div class="testimonials-grid">
+        <div class="testimonial-card">
+            <p class="testimonial-text">
+                "Devenir mentor m'a permis de consolider mes connaissances en React tout en aidant 
+                d'autres étudiants. Une expérience enrichissante !"
+            </p>
+            <p class="testimonial-author">- Marie L., Mentor Web</p>
+        </div>
+        
+        <div class="testimonial-card">
+            <p class="testimonial-text">
+                "Le mentorat m'a ouvert des portes professionnelles. Les recruteurs apprécient vraiment 
+                cette dimension d'entraide."
+            </p>
+            <p class="testimonial-author">- Jean D., Mentor DevOps</p>
+        </div>
+        
+        <div class="testimonial-card">
+            <p class="testimonial-text">
+                "J'adore partager ma passion pour la cybersécurité. Voir les progrès de mes mentorés 
+                est ma plus grande satisfaction !"
+            </p>
+            <p class="testimonial-author">- Sophie M., Mentor Cyber</p>
+        </div>
+    </div>
+</section>
+{% endblock %}

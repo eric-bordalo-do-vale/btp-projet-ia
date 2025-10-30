@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+
+{% block title %}Mes rendez-vous - La Tour{% endblock %}
+
+{% block content %}
+<h1>Mes rendez-vous</h1>
+
+<div class="rdv-sections">
+    <section class="rdv-section">
+        <h2>Mes demandes de mentorat</h2>
+        {% if rdv_demandes %}
+            <div class="rdv-list">
+                {% for rdv in rdv_demandes %}
+                <div class="rdv-card status-{{ rdv.statut }}">
+                    <div class="rdv-header">
+                        <h3>{{ rdv.sujet }}</h3>
+                        <span class="status-badge">{{ rdv.statut }}</span>
+                    </div>
+                    <p><strong>Mentor:</strong> {{ rdv.mentor.prenom }} {{ rdv.mentor.nom }}</p>
+                    <p><strong>Date:</strong> {{ rdv.date_rdv.strftime('%d/%m/%Y à %H:%M') }}</p>
+                    <p><strong>Type:</strong> {{ rdv.type_rdv }}</p>
+                    {% if rdv.description %}
+                    <p class="description">{{ rdv.description }}</p>
+                    {% endif %}
+                </div>
+                {% endfor %}
+            </div>
+        {% else %}
+            <p class="no-results">Vous n'avez pas encore demandé de rendez-vous.</p>
+            <a href="{{ url_for('mentors') }}" class="btn">Trouver un mentor</a>
+        {% endif %}
+    </section>
+
+    <section class="rdv-section">
+        <h2>Rendez-vous à donner (en tant que mentor)</h2>
+        {% if rdv_a_donner %}
+            <div class="rdv-list">
+                {% for rdv in rdv_a_donner %}
+                <div class="rdv-card status-{{ rdv.statut }}">
+                    <div class="rdv-header">
+                        <h3>{{ rdv.sujet }}</h3>
+                        <span class="status-badge">{{ rdv.statut }}</span>
+                    </div>
+                    <p><strong>Étudiant:</strong> {{ rdv.etudiant.prenom }} {{ rdv.etudiant.nom }}</p>
+                    <p><strong>Date:</strong> {{ rdv.date_rdv.strftime('%d/%m/%Y à %H:%M') }}</p>
+                    <p><strong>Type:</strong> {{ rdv.type_rdv }}</p>
+                    {% if rdv.description %}
+                    <p class="description">{{ rdv.description }}</p>
+                    {% endif %}
+                </div>
+                {% endfor %}
+            </div>
+        {% else %}
+            <p class="no-results">Aucun rendez-vous à donner pour le moment.</p>
+        {% endif %}
+    </section>
+</div>
+{% endblock %}

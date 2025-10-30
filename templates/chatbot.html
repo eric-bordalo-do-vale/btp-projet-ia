@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+
+{% block title %}Chatbot IA - La Tour{% endblock %}
+
+{% block content %}
+<div class="chatbot-container">
+    <h1>🤖 Assistant IA</h1>
+    <p class="subtitle">Posez vos questions techniques, je suis là pour vous aider !</p>
+
+    <div id="chat-messages" class="chat-messages">
+        <div class="message bot-message">
+            <strong>Assistant IA:</strong>
+            <p>Bonjour ! Je suis votre assistant IA pour La Tour. Comment puis-je vous aider aujourd'hui ?</p>
+        </div>
+    </div>
+
+    <form id="chat-form" class="chat-form" 
+          hx-post="{{ url_for('chat_api') }}"
+          hx-target="#chat-messages"
+          hx-swap="beforeend"
+          hx-on::after-request="document.getElementById('message').value = ''">
+        <input type="text" 
+               id="message" 
+               name="message" 
+               placeholder="Posez votre question..." 
+               required 
+               autocomplete="off">
+        <button type="submit" class="btn">Envoyer</button>
+    </form>
+
+    <div class="chat-suggestions">
+        <p><strong>Exemples de questions :</strong></p>
+        <button class="suggestion-btn" onclick="askQuestion('Comment déboguer mon code Python ?')">
+            Comment déboguer mon code Python ?
+        </button>
+        <button class="suggestion-btn" onclick="askQuestion('Explique-moi HTMX')">
+            Explique-moi HTMX
+        </button>
+        <button class="suggestion-btn" onclick="askQuestion('Aide sur Flask et SQLAlchemy')">
+            Aide sur Flask et SQLAlchemy
+        </button>
+    </div>
+</div>
+
+<script>
+function askQuestion(question) {
+    document.getElementById('message').value = question;
+    document.getElementById('chat-form').requestSubmit();
+}
+
+htmx.on('#chat-messages', 'htmx:afterSwap', function() {
+    const chatMessages = document.getElementById('chat-messages');
+    chatMessages.scrollTop = chatMessages.scrollHeight;
+});
+</script>
+{% endblock %}
