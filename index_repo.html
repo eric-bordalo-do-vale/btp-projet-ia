@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>📁 Contenu Branche Vincent</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, sans-serif;
+            background: #f5f5f5;
+            color: #333;
+        }
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px;
+            text-align: center;
+        }
+        .header h1 { font-size: 2.5em; margin-bottom: 10px; }
+        .toc {
+            background: white;
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .toc h2 {
+            color: #667eea;
+            margin-bottom: 20px;
+            border-bottom: 3px solid #667eea;
+            padding-bottom: 10px;
+        }
+        .toc ul {
+            list-style: none;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+        }
+        .toc li a {
+            display: block;
+            padding: 15px;
+            background: #f8f9fa;
+            border-left: 4px solid #667eea;
+            border-radius: 4px;
+            text-decoration: none;
+            color: #333;
+            transition: all 0.3s;
+        }
+        .toc li a:hover {
+            background: #667eea;
+            color: white;
+            transform: translateX(5px);
+        }
+        .file-section {
+            max-width: 1200px;
+            margin: 20px auto;
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .file-header {
+            background: #667eea;
+            color: white;
+            padding: 15px 30px;
+            font-weight: bold;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+        }
+        .file-header:hover { background: #764ba2; }
+        .file-content {
+            padding: 30px;
+            display: none;
+            overflow-x: auto;
+        }
+        .file-content.show { display: block; }
+        pre {
+            background: #f5f5f5;
+            padding: 15px;
+            border-radius: 4px;
+            overflow-x: auto;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+        code { font-family: 'Monaco', 'Courier', monospace; }
+        .toggle-icon { transition: transform 0.3s; }
+        .file-content.show ~ .file-header .toggle-icon { transform: rotate(180deg); }
+        .footer {
+            text-align: center;
+            padding: 20px;
+            color: #666;
+            background: #f8f9fa;
+        }
+        .btn-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: #667eea;
+            color: white;
+            padding: 12px 16px;
+            border-radius: 50%;
+            text-decoration: none;
+            font-size: 20px;
+            display: none;
+            width: 50px;
+            height: 50px;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        }
+        .btn-top.show { display: flex; }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>📁 Contenu de la Branche Vincent</h1>
+        <p>Plateforme La Tour - Projet de Mentorat</p>
+    </div>
+
+    <div class="toc">
+        <h2>📑 Table des Matières</h2>
+        <ul>
+            <li><a href="#readme">README.md</a></li>
+            <li><a href="#app">app.py</a></li>
+            <li><a href="#requirements">requirements.txt</a></li>
+            <li><a href="#env">env.example</a></li>
+            <li><a href="#resume">RESUME.md</a></li>
+            <li><a href="#commencer">COMMENCER_ICI.md</a></li>
+        </ul>
+    </div>
+
+    <div class="file-section" id="readme">
+        <div class="file-header" onclick="toggleContent(this)">
+            📄 README.md <span class="toggle-icon">▼</span>
+        </div>
+        <div class="file-content">
+            <pre><code># 🗼 La Tour - Plateforme de Mentorat
+
+Plateforme d'entraide et de mentorat pour les étudiants de La Plateforme (Marseille).
+
+## 🚀 Installation
+
+### 1. Créer un environnement virtuel Python
+```bash
+python -m venv venv
+```
+
+### 2. Activer l'environnement virtuel
+
+**Windows :**
+```bash
+venv\Scripts\activate
+```
+
+**Linux/Mac :**
+```bash
+source venv/bin/activate
+```
+
+### 3. Installer les dépendances
+```bash
+pip install -r requirements.txt
+```
+
+### 4. Configurer les variables d'environnement
+Copier `.env.example` vers `.env` et modifier si nécessaire :
+```bash
+copy .env.example .env
+```
+
+### 5. Initialiser la base de données
+```bash
+flask init-db
+```
+
+### 6. Ajouter des données de test
+```bash
+flask seed-db
+```
+
+### 7. Lancer l'application
+```bash
+python app.py
+```
+
+L'application sera accessible sur : http://127.0.0.1:5000
+
+## 📁 Structure du projet
+```
+btp-projet-ia/
+├── app.py                 # Application Flask principale
+├── requirements.txt       # Dépendances Python
+├── .env                   # Variables d'environnement (à créer)
+├── .env.example          # Exemple de configuration
+├── templates/            # Templates HTML
+│   ├── base.html
+│   ├── index.html
+│   ├── mentors.html
+│   ├── mentor_detail.html
+│   ├── demander_rdv.html
+│   ├── mes_rdv.html
+│   └── chatbot.html
+└── static/
+    └── css/
+        └── style.css     # Styles CSS
+```
+
+## 🎯 Fonctionnalités implémentées
+
+### ✅ Version 1 (Base)
+- [x] Page d'accueil
+- [x] Liste des mentors avec filtres par spécialisation
+- [x] Profil détaillé d'un mentor
+- [x] Formulaire de demande de rendez-vous
+- [x] Page "Mes rendez-vous"
+- [x] Interface chatbot (UI prête)
+- [x] Base de données SQLite avec modèles User et RendezVous
+- [x] Design responsive avec HTMX
+- [x] Données de test
+
+## 🔨 À développer (prochaines étapes)
+
+### 📌 Priorité 1 (Jours 1-3)
+- [ ] Système d'authentification (inscription/connexion)
+- [ ] Gestion des sessions utilisateurs
+- [ ] Édition de profil utilisateur
+- [ ] Validation et acceptation/refus des rendez-vous
+
+### 📌 Priorité 2 (Jours 4-6)
+- [ ] Intégration d'une vraie IA pour le chatbot
+- [ ] Système de notifications
+- [ ] Recherche avancée de mentors
+- [ ] Calendrier interactif pour les disponibilités
+
+### 📌 Priorité 3 (Jours 7-9)
+- [ ] Système de notation/avis
+- [ ] Messagerie interne
+- [ ] Statistiques et tableau de bord
+- [ ] Export de données
+
+### 📌 Finitions (Jour 10)
+- [ ] Tests finaux
+- [ ] Documentation utilisateur
+- [ ] Optimisations de performance
+- [ ] Préparation de la présentation
+
+## 🛠️ Technologies utilisées
+- **Backend** : Python 3.x + Flask
+- **Base de données** : SQLite (SQLAlchemy ORM)
+- **Frontend** : HTML5/CSS3 + HTMX
+- **Design** : CSS personnalisé (responsive)</code></pre>
+        </div>
+    </div>
+
+    <div class="file-section" id="app">
+        <div class="file-header" onclick="toggleContent(this)">
+            🐍 app.py <span class="toggle-icon">▼</span>
+        </div>
+        <div class="file-content">
+            <pre><code>from flask import Flask, render_template, request, redirect, url_for, flash
+from flask_sqlalchemy import SQLAlchemy
+from datetime import datetime
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
+
+app = Flask(__name__)
+app.config['SECRET_KEY'] = os.getenv('SECRET_KEY', 'dev-secret-key-change-this')
+app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('DATABASE_URL', 'sqlite:///latour.db')
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+
+db = SQLAlchemy(app)
+
+# Modèles de base de données
+class User(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    nom = db.Column(db.String(100), nullable=False)
+    prenom = db.Column(db.String(100), nullable=False)
+    email = db.Column(db.String(120), unique=True, nullable=False)
+    role = db.Column(db.String(20), nullable=False)  # etudiant, intervenant, partenaire
+    specialisation = db.Column(db.String(100))  # web, data, cyber, etc
+    bio = db.Column(db.Text)
+    disponible = db.Column(db.Boolean, default=True)
+    date_creation = db.Column(db.DateTime, default=datetime.utcnow)
+    
+    # Relations
+    rendez_vous_demandes = db.relationship('RendezVous', foreign_keys='RendezVous.etudiant_id', backref='etudiant')
+    rendez_vous_donnes = db.relationship('RendezVous', foreign_keys='RendezVous.mentor_id', backref='mentor')
+
+class RendezVous(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    etudiant_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+    mentor_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+    sujet = db.Column(db.String(200), nullable=False)
+    description = db.Column(db.Text)
+    date_rdv = db.Column(db.DateTime, nullable=False)
+    type_rdv = db.Column(db.String(20), default='en_ligne')  # en_ligne ou presentiel
+    statut = db.Column(db.String(20), default='en_attente')  # en_attente, accepte, refuse, termine
+    date_creation = db.Column(db.DateTime, default=datetime.utcnow)
+
+# Routes principales
+@app.route('/')
+def index():
+    return render_template('index.html')
+
+@app.route('/mentors')
+def mentors():
+    specialisation = request.args.get('specialisation', '')
+    query = User.query.filter(User.role == 'intervenant')
+    
+    if specialisation:
+        query = query.filter_by(specialisation=specialisation)
+    
+    mentors = query.filter_by(disponible=True).all()
+    return render_template('mentors.html', mentors=mentors)
+
+@app.route('/mentor/&lt;int:id&gt;')
+def mentor_detail(id):
+    mentor = User.query.get_or_404(id)
+    return render_template('mentor_detail.html', mentor=mentor)
+
+@app.route('/rendez-vous/demander/&lt;int:mentor_id&gt;', methods=['GET', 'POST'])
+def demander_rdv(mentor_id):
+    mentor = User.query.get_or_404(mentor_id)
+    
+    if mentor.role != 'intervenant':
+        flash('Cet utilisateur n\'est pas un mentor disponible.', 'error')
+        return redirect(url_for('mentors'))
+    
+    if not mentor.disponible:
+        flash('Ce mentor n\'est pas disponible actuellement.', 'warning')
+        return redirect(url_for('mentor_detail', id=mentor_id))
+    
+    if request.method == 'POST':
+        # Simuler un étudiant connecté
+        etudiant = User.query.filter_by(role='etudiant').first()
+        if not etudiant:
+            flash('Erreur: Aucun étudiant trouvé.', 'error')
+            return redirect(url_for('mentors'))
+        
+        try:
+            date_rdv = datetime.strptime(request.form.get('date_rdv'), '%Y-%m-%dT%H:%M')
+            
+            if date_rdv < datetime.now():
+                flash('La date du rendez-vous doit être dans le futur.', 'error')
+                return render_template('demander_rdv.html', mentor=mentor)
+            
+            nouveau_rdv = RendezVous(
+                etudiant_id=etudiant.id,
+                mentor_id=mentor_id,
+                sujet=request.form.get('sujet'),
+                description=request.form.get('description'),
+                date_rdv=date_rdv,
+                type_rdv=request.form.get('type_rdv')
+            )
+            
+            db.session.add(nouveau_rdv)
+            db.session.commit()
+            
+            flash('Votre demande de rendez-vous a été envoyée !', 'success')
+            return redirect(url_for('mes_rdv'))
+        except ValueError:
+            flash('Format de date invalide.', 'error')
+            return render_template('demander_rdv.html', mentor=mentor)
+
+# Initialisation de la base de données
+@app.cli.command()
+def init_db():
+    """Initialise la base de données"""
+    db.create_all()
+    print("Base de données initialisée !")
+
+@app.cli.command()
+def seed_db():
+    """Ajoute des données de test"""
+    users = [
+        User(nom='Dupont', prenom='Jean', email='jean.dupont@laplateforme.io', 
+             role='intervenant', specialisation='web', bio='Expert en développement web', disponible=True),
+        User(nom='Martin', prenom='Sophie', email='sophie.martin@laplateforme.io',
+             role='intervenant', specialisation='data', bio='Spécialiste Data Science', disponible=True),
+        User(nom='Durand', prenom='Pierre', email='pierre.durand@laplateforme.io',
+             role='etudiant', specialisation='cyber', bio='Étudiant en cybersécurité', disponible=True),
+    ]
+    
+    for user in users:
+        existing = User.query.filter_by(email=user.email).first()
+        if not existing:
+            db.session.add(user)
+    
+    db.session.commit()
+    print("Données de test ajoutées !")
+
+if __name__ == '__main__':
+    app.run(debug=True)</code></pre>
+        </div>
+    </div>
+
+    <div class="file-section" id="requirements">
+        <div class="file-header" onclick="toggleContent(this)">
+            📦 requirements.txt <span class="toggle-icon">▼</span>
+        </div>
+        <div class="file-content">
+            <pre><code>Flask==3.0.0
+Flask-SQLAlchemy==3.1.1
+python-dotenv==1.0.0
+Werkzeug==3.0.1</code></pre>
+        </div>
+    </div>
+
+    <div class="file-section" id="env">
+        <div class="file-header" onclick="toggleContent(this)">
+            ⚙️ .env.example <span class="toggle-icon">▼</span>
+        </div>
+        <div class="file-content">
+            <pre><code>SECRET_KEY=votre_cle_secrete_ici
+DATABASE_URL=sqlite:///latour.db
+FLASK_ENV=development</code></pre>
+        </div>
+    </div>
+
+    <div class="file-section" id="resume">
+        <div class="file-header" onclick="toggleContent(this)">
+            📄 RESUME.md <span class="toggle-icon">▼</span>
+        </div>
+        <div class="file-content">
+            <pre><code># 📋 RÉSUMÉ - Tout est prêt pour commencer !
+
+## ✅ Ce qui a été créé pour vous
+
+### 📁 Fichiers de configuration
+- ✅ requirements.txt - Dépendances Python (Flask, SQLAlchemy)
+- ✅ .env.example - Template de configuration
+- ✅ .gitignore - Fichiers à ignorer dans Git
+- ✅ setup.bat - Installation automatique Windows
+- ✅ create_files.py - Créer les dossiers et templates
+
+### 🚀 Application principale
+- ✅ app.py - Backend Flask complet avec :
+  - Modèles User et RendezVous
+  - Routes pour toutes les pages
+  - Base de données SQLite
+  - API chatbot de base
+  - Commandes flask init-db et seed-db
+
+### 🎨 Templates HTML (à créer avec create_files.py)
+- ✅ templates/base.html - Template de base
+- ✅ templates/index.html - Page d'accueil
+- ✅ templates/mentors.html - Liste des mentors
+- ✅ templates/mentor_detail.html - Profil d'un mentor
+- ✅ templates/demander_rdv.html - Formulaire RDV
+- ✅ templates/mes_rdv.html - Mes rendez-vous
+- ✅ templates/chatbot.html - Interface chatbot
+
+### 🎯 Styles
+- ✅ static/css/style.css - CSS complet et responsive</code></pre>
+        </div>
+    </div>
+
+    <div class="file-section" id="commencer">
+        <div class="file-header" onclick="toggleContent(this)">
+            🚀 COMMENCER_ICI.md <span class="toggle-icon">▼</span>
+        </div>
+        <div class="file-content">
+            <pre><code># 🎯 BIENVENUE SUR LA TOUR !
+
+## ⚡ Commencer en 3 étapes
+
+### 1️⃣ Créer les fichiers (si pas déjà fait)
+```bash
+python create_files.py
+```
+
+### 2️⃣ Installer automatiquement (Windows)
+```bash
+setup.bat
+```
+
+**OU** Installer manuellement :
+```bash
+python -m venv venv
+venv\Scripts\activate
+pip install -r requirements.txt
+copy .env.example .env
+flask init-db
+flask seed-db
+```
+
+### 3️⃣ Lancer l'application
+```bash
+python app.py
+```
+
+Puis ouvrez : **http://127.0.0.1:5000**
+
+## 📚 Documentation supplémentaire
+- Consultez README.md pour plus de détails
+- Voir ROADMAP.md pour le planning complet</code></pre>
+        </div>
+    </div>
+
+    <div class="footer">
+        <p>🗼 Plateforme La Tour | Branche: <strong>vincent</strong> | Projet BTP-IA 2025</p>
+    </div>
+
+    <a href="#" class="btn-top" id="topBtn">↑</a>
+
+    <script>
+        function toggleContent(header) {
+            const content = header.nextElementSibling;
+            content.classList.toggle('show');
+        }
+
+        window.addEventListener('scroll', function() {
+            const topBtn = document.getElementById('topBtn');
+            if (window.scrollY > 300) {
+                topBtn.classList.add('show');
+            } else {
+                topBtn.classList.remove('show');
+            }
+        });
+
+        document.getElementById('topBtn').addEventListener('click', function(e) {
+            e.preventDefault();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+    </script>
+</body>
+</html>
