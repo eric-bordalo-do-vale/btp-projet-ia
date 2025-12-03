@@ -125,10 +125,10 @@
         <div id="home" class="page active">
             <div class="hero">
                 <div style="display: flex; align-items: center; justify-content: center; gap: 20px; margin-bottom: 20px;">
-                    <img src="img24.jpg" alt="La Tour" style="height: 120px; width: auto;">
+                    <div style="font-size: 60px; font-weight: bold; background: linear-gradient(135deg, #6eb7fb 0%, #367dc1 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">🗼</div>
                     <h1>Bienvenue sur La Tour</h1>
                 </div>
-                <p class="subtitle">L'entraide qu'élève</p>
+                <p class="subtitle">L'entraide qui élève</p>
                 <p class="hero-description">Votre plateforme d'entraide et de mentorat à La Plateforme</p>
             </div>
 
@@ -267,7 +267,9 @@
                 
                 <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin: 30px 0; align-items: center;">
                     <div>
-                        <img src="static/images/entraide.jpg" alt="Entraide et collaboration" style="width: 100%; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.15);">
+                    <div style="display: flex; align-items: center; justify-content: center; height: 300px; background: linear-gradient(135deg, rgba(110, 183, 251, 0.1) 0%, rgba(54, 125, 193, 0.1) 100%); border-radius: 8px; font-size: 100px;">
+                        🤝
+                    </div>
                     </div>
                     <div>
                         <h3 style="color: #6eb7fb; margin-bottom: 15px;">Les bénéfices de l'entraide</h3>
@@ -310,7 +312,9 @@
                         </ul>
                     </div>
                     <div>
-                        <img src="static/images/exellence.jpg" alt="Progression de l'apprentissage" style="width: 100%; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.15);">
+                    <div style="display: flex; align-items: center; justify-content: center; height: 300px; background: linear-gradient(135deg, rgba(110, 183, 251, 0.1) 0%, rgba(54, 125, 193, 0.1) 100%); border-radius: 8px; font-size: 100px;">
+                        ⭐
+                    </div>
                     </div>
                 </div>
 
@@ -344,7 +348,9 @@
                         </ul>
                     </div>
                     <div>
-                        <img src="static/images/innovation.jpg" alt="IA et accompagnement humain" style="width: 100%; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.15);">
+                    <div style="display: flex; align-items: center; justify-content: center; height: 300px; background: linear-gradient(135deg, rgba(110, 183, 251, 0.1) 0%, rgba(54, 125, 193, 0.1) 100%); border-radius: 8px; font-size: 100px;">
+                        💡
+                    </div>
                     </div>
                 </div>
 
@@ -379,7 +385,9 @@
                         </ul>
                     </div>
                     <div>
-                        <img src="static/images/accessibilite.jpg" alt="Accessibilité et support 24/7" style="width: 100%; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.15);">
+                    <div style="display: flex; align-items: center; justify-content: center; height: 300px; background: linear-gradient(135deg, rgba(110, 183, 251, 0.1) 0%, rgba(54, 125, 193, 0.1) 100%); border-radius: 8px; font-size: 100px;">
+                        🌐
+                    </div>
                     </div>
                 </div>
 
@@ -400,10 +408,10 @@
         <!-- PAGE CHATBOT -->
         <div id="chatbot" class="page">
             <h2>🤖 Chatbot IA - La Tour Assistant</h2>
-            <div style="background: #f8f9fa; border-radius: 8px; padding: 20px; margin: 20px 0; max-width: 600px;">
-                <div id="chatMessages" style="height: 300px; overflow-y: auto; background: white; padding: 15px; border-radius: 8px; margin-bottom: 15px;">
-                    <div style="padding: 10px; background: #e3f2fd; border-radius: 8px; margin-bottom: 10px;">
-                        <strong>Assistant:</strong> Bonjour! 👋 Je suis votre assistant La Tour. Comment puis-je vous aider?
+            <div style="background: #f8f9fa; border-radius: 8px; padding: 20px; margin: 20px 0; max-width: 800px;">
+                <div id="chatMessages" style="height: 500px; overflow-y: auto; background: white; padding: 15px; border-radius: 8px; margin-bottom: 15px; display: flex; flex-direction: column; gap: 12px;">
+                    <div style="padding: 12px 16px; background: #e3f2fd; border-radius: 8px; border-left: 4px solid #6eb7fb;">
+                        <strong>🤖 Assistant:</strong> Bonjour! 👋 Je suis votre assistant La Tour. Comment puis-je vous aider?
                     </div>
                 </div>
                 <div style="display: flex; gap: 10px;">
@@ -454,6 +462,22 @@
         </div>
     </footer>
 
+    <!-- Chatbot Widget Flottant -->
+    <button id="chatbot-toggle-btn" aria-label="Ouvrir le chatbot" title="Chatbot IA">🤖 Chat</button>
+    <div id="chatbot-widget">
+        <div class="chatbot-header">
+            <h3>🤖 La Tour Assistant</h3>
+            <button id="chatbot-close-btn" aria-label="Fermer le chatbot">✕</button>
+        </div>
+        <div id="chatbox-messages"></div>
+        <div class="chatbot-input-area">
+            <input type="text" id="user-message" placeholder="Posez votre question..." />
+            <button id="send-btn">Envoyer</button>
+        </div>
+    </div>
+
+    <script src="static/js/chatbot.js"></script>
+
     <script>
         // Authentication and Burger Menu
         let currentUser = null;
@@ -476,6 +500,12 @@
             document.getElementById('userName').textContent = currentUser.email;
             document.getElementById('navMenu').style.display = 'flex';
             document.getElementById('auth-modal').style.display = 'none';
+            
+            // Show chatbot widget and button
+            const widget = document.getElementById('chatbot-widget');
+            const toggleBtn = document.getElementById('chatbot-toggle-btn');
+            if (widget) widget.style.display = 'flex';
+            if (toggleBtn) toggleBtn.style.display = 'flex';
         }
 
         // Update UI for unauthenticated user
@@ -484,6 +514,12 @@
             document.getElementById('userProfile').style.display = 'none';
             document.getElementById('navMenu').style.display = 'none';
             currentUser = null;
+            
+            // Hide chatbot widget and button
+            const widget = document.getElementById('chatbot-widget');
+            const toggleBtn = document.getElementById('chatbot-toggle-btn');
+            if (widget) widget.style.display = 'none';
+            if (toggleBtn) toggleBtn.style.display = 'none';
         }
 
         // Login button click handler
@@ -538,6 +574,16 @@
                 document.getElementById('login-form').reset();
                 document.getElementById('auth-modal').style.display = 'none';
                 updateUIForAuthenticatedUser();
+                
+                // Re-initialize chatbot after login
+                setTimeout(() => {
+                    console.log('[Chatbot] User logged in, initializing chatbot');
+                    if (typeof setupChatbotListeners === 'function') {
+                        setupChatbotListeners();
+                        loadChatHistory();
+                        initChatbotAI();
+                    }
+                }, 100);
             } else {
                 document.getElementById('login-error').textContent = 'Email ou mot de passe incorrect';
                 document.getElementById('login-error').style.display = 'block';
@@ -795,17 +841,29 @@
             const input = document.getElementById('chatInput');
             const messages = document.getElementById('chatMessages');
             
-            if (input.value.trim()) {
-                messages.innerHTML += `<div style="padding: 10px; background: #fff3e0; border-radius: 8px; margin-bottom: 10px;"><strong>Vous:</strong> ${input.value}</div>`;
-                
-                setTimeout(() => {
-                    messages.innerHTML += `<div style="padding: 10px; background: #e3f2fd; border-radius: 8px; margin-bottom: 10px;"><strong>Assistant:</strong> Merci pour votre question! Je suis en cours de développement pour mieux vous répondre.</div>`;
-                    messages.scrollTop = messages.scrollHeight;
-                }, 500);
-                
-                input.value = '';
+            if (!input || !messages || !input.value.trim()) return;
+            
+            const userMessage = input.value;
+            
+            // Add user message
+            const userDiv = document.createElement('div');
+            userDiv.style.cssText = 'padding: 12px 16px; background: #6eb7fb; color: white; border-radius: 8px; border-bottom-right-radius: 4px; margin-bottom: 8px; align-self: flex-end; max-width: 80%;';
+            userDiv.innerHTML = `<strong>Vous:</strong> ${escapeHtmlInline(userMessage)}`;
+            messages.appendChild(userDiv);
+            
+            // Clear input
+            input.value = '';
+            
+            // Simulate response
+            setTimeout(() => {
+                const assistantDiv = document.createElement('div');
+                assistantDiv.style.cssText = 'padding: 12px 16px; background: #e3f2fd; border-radius: 8px; border-left: 4px solid #6eb7fb; margin-bottom: 8px; align-self: flex-start; max-width: 80%;';
+                assistantDiv.innerHTML = '<strong>🤖 Assistant:</strong> Merci pour votre question! Je suis en cours de développement pour mieux vous répondre.';
+                messages.appendChild(assistantDiv);
                 messages.scrollTop = messages.scrollHeight;
-            }
+            }, 500);
+            
+            messages.scrollTop = messages.scrollHeight;
         }
 
         function submitMentorForm(event) {
@@ -891,12 +949,75 @@
             });
         });
 
-        // Keyboard shortcut for chat
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'Enter' && document.getElementById('chatInput') === document.activeElement) {
-                sendMessage();
+        // Update chat history for dedicated chatbot page
+        function updateDedicatedChatPage() {
+            const chatMessages = document.getElementById('chatMessages');
+            if (!chatMessages) return;
+            
+            const currentUser = getCurrentUser();
+            if (!currentUser) return;
+            
+            // Load history from chatbot.js
+            const historyKey = `chatbot_history_${currentUser.email}`;
+            const stored = localStorage.getItem(historyKey);
+            
+            if (stored) {
+                try {
+                    const history = JSON.parse(stored);
+                    chatMessages.innerHTML = '';
+                    
+                    history.forEach(msg => {
+                        const msgDiv = document.createElement('div');
+                        if (msg.role === 'user') {
+                            msgDiv.style.cssText = 'padding: 12px 16px; background: #6eb7fb; color: white; border-radius: 8px; border-bottom-right-radius: 4px; margin-bottom: 8px; align-self: flex-end; max-width: 80%;';
+                        } else {
+                            msgDiv.style.cssText = 'padding: 12px 16px; background: #e3f2fd; border-radius: 8px; border-left: 4px solid #6eb7fb; margin-bottom: 8px; align-self: flex-start; max-width: 80%;';
+                        }
+                        msgDiv.innerHTML = `<strong>${msg.role === 'user' ? 'Vous' : '🤖 Assistant'}:</strong> ${escapeHtmlInline(msg.content)}`;
+                        chatMessages.appendChild(msgDiv);
+                    });
+                    
+                    chatMessages.scrollTop = chatMessages.scrollHeight;
+                } catch (e) {
+                    console.error('Failed to load chat history', e);
+                }
             }
-        });
+        }
+        
+        // Escape HTML inline
+        function escapeHtmlInline(text) {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+        
+        // Get current user (from localStorage)
+        function getCurrentUser() {
+            const userData = localStorage.getItem('user');
+            if (!userData) return null;
+            try {
+                return JSON.parse(userData);
+            } catch (e) {
+                return null;
+            }
+        }
+
+        // Modified showPage function to handle chatbot widget visibility
+        const originalShowPage = showPage;
+        showPage = function(pageName) {
+            originalShowPage(pageName);
+            
+            // Hide widget on dedicated chatbot page, show on others
+            if (pageName === 'chatbot') {
+                hideChatbotWidget();
+                updateDedicatedChatPage();
+            } else {
+                const currentUser = getCurrentUser();
+                if (currentUser) {
+                    showChatbotWidget();
+                }
+            }
+        };
     </script>
 </body>
 </html>
