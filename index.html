@@ -232,14 +232,24 @@
         <!-- PAGE MENTORS -->
         <div id="mentors" class="page">
             <h2>👥 Trouver un Mentor</h2>
-            <div style="margin: 20px 0;">
-                <label>Filtrer par spécialisation:</label>
-                <select id="filterSpec" onchange="filterMentors()" style="padding: 8px; margin-left: 10px;">
-                    <option value="">Toutes les spécialisations</option>
-                    <option value="web">💻 Développement Web</option>
-                    <option value="data">📊 Data Science</option>
-                    <option value="cyber">🔒 Cybersécurité</option>
-                </select>
+            <div style="margin: 20px 0; display: flex; gap: 20px; align-items: center; flex-wrap: wrap;">
+                <div>
+                    <label>Domaines:</label>
+                    <select id="filterDomain" onchange="updateSpecialties()" style="padding: 8px; margin-left: 10px;">
+                        <option value="">Tous les domaines</option>
+                        <option value="web">💻 Développement Web</option>
+                        <option value="ia">🤖 Intelligence Artificielle</option>
+                        <option value="cyber">🔒 Cybersécurité</option>
+                        <option value="immersif">🎮 Systèmes Immersifs</option>
+                        <option value="logiciel">⚙️ Logiciels</option>
+                    </select>
+                </div>
+                <div>
+                    <label>Spécialités:</label>
+                    <select id="filterSpecialty" onchange="filterMentors()" style="padding: 8px; margin-left: 10px;">
+                        <option value="">Toutes les spécialités</option>
+                    </select>
+                </div>
             </div>
             <div id="mentorsList" class="mentors-grid"></div>
         </div>
@@ -745,9 +755,85 @@
             `).join('');
         }
 
+        // Mapping des spécialités par domaine
+        const specialtiesByDomain = {
+            'web': [
+                'Frontend engineering',
+                'Backend & API development',
+                'Développement CMS',
+                'Développement e-commerce'
+            ],
+            'ia': [
+                'Machine Learning',
+                'Traitement du Langage Naturel',
+                'Computer Vision',
+                'IA générative'
+            ],
+            'cyber': [
+                'Sécurité offensive',
+                'Sécurité défensive',
+                'Forensique numérique & réponse aux incidents',
+                'Sécurité réseau & architecture'
+            ],
+            'immersif': [
+                'Développement VR',
+                'Développement AR/MR',
+                'Interaction 3D & UX immersif',
+                'Simulation temps réel'
+            ],
+            'logiciel': [
+                'Génie logiciel & architecture',
+                'Développement d\'applications mobiles',
+                'Logiciels embarqués',
+                'DevOps & intégration logicielle'
+            ]
+        };
+
+        function updateSpecialties() {
+            const domain = document.getElementById('filterDomain').value;
+            const specialtySelect = document.getElementById('filterSpecialty');
+            
+            // Vider le select des spécialités
+            specialtySelect.innerHTML = '<option value="">Toutes les spécialités</option>';
+            
+            // Remplir avec les spécialités du domaine sélectionné
+            if (domain && specialtiesByDomain[domain]) {
+                specialtiesByDomain[domain].forEach(specialty => {
+                    const option = document.createElement('option');
+                    option.value = specialty;
+                    option.textContent = specialty;
+                    specialtySelect.appendChild(option);
+                });
+            }
+            
+            // Réinitialiser le filtrage
+            filterMentors();
+        }
+
         function filterMentors() {
-            const spec = document.getElementById('filterSpec').value;
-            const filtered = spec ? mentors.filter(m => m.specialisation === spec) : mentors;
+            const domain = document.getElementById('filterDomain').value;
+            const specialty = document.getElementById('filterSpecialty').value;
+            
+            let filtered = mentors;
+            
+            // Filtrer par domaine si sélectionné
+            if (domain) {
+                filtered = filtered.filter(m => {
+                    // Mapper les anciennes spécialisations aux nouveaux domaines
+                    const domainMap = {
+                        'web': 'web',
+                        'data': 'ia',
+                        'cyber': 'cyber'
+                    };
+                    return domainMap[m.specialisation] === domain;
+                });
+            }
+            
+            // Filtrer par spécialité si sélectionné
+            if (specialty) {
+                filtered = filtered.filter(m => m.specialty === specialty);
+            }
+            
             displayMentors(filtered);
         }
 
